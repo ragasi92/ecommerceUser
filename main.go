@@ -44,7 +44,10 @@ func RunLambda(ctx context.Context, event events.CognitoEventUserPoolsPostConfir
 		fmt.Println("Error reading the secret: " + err.Error())
 		return event, err
 	}
-	return event, nil
+
+	err = db.SignUp(data)
+
+	return event, err
 }
 
 func ValidateParameters() bool {
